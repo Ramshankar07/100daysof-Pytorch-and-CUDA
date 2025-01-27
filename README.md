@@ -20,6 +20,13 @@ This section will log daily updates, thoughts, snippets, and significant breakth
 Day 1: Introduction to PyTorch
 Learned the basics of tensors in PyTorch and how they differ from NumPy arrays. Implemented simple tensor operations and explored PyTorch's dynamic computation graph.
 
+Day 2: Experimenting with tensors and autograd
+Day 3: Experimenting with types of activation functions
+Day 4: Experimenting with optimizers
+Day 5: CNN model for MNIST dataset
+
+CUDA
+Day 6: Vector Addition with CUDA
 csharp
 Copy code
 
