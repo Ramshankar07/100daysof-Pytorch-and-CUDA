@@ -22,6 +22,20 @@ Day 5: CNN model for MNIST dataset
 **Summary:**  
 Implemented vector addition by writing a simple CUDA program. Explored how to launch a kernel to perform a parallelized addition of two arrays, where each thread computes the sum of a pair of values.  
 
+## Day 7
+### File: `MatrixAdd.cu`, `triton-vectadd.py`
+**Summary:**  
+Worked on vect addition using triton.
+
+**Learned:**  
+- How to map 2D matrix data onto multiple threads.
+- Understanding thread indexing in 2D grids and blocks using `threadIdx`, `blockIdx`, `blockDim`, and `gridDim`.  
+- Synchronizing threads and avoiding race conditions when writing results to an output matrix.  
+
+### Reading:  
+- Read **Chapter 2** of the PMPP book.  
+  - Learned about scalability of GPUs, massive parallelism, and how to configure problem data to match GPU thread hierarchies.  
+
 **Learned:**  
 - Basics of writing a CUDA kernel.
 - Understanding of grid, block, and thread hierarchy in CUDA.  
