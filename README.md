@@ -37,5 +37,9 @@ Implemented Matrix addition in both triton and CUDA.
 **Summary:**  
 Implemented matrix-vector multiplication using CUDA. Each thread was set up to compute the dot product between a matrix row and the given vector. Optimized performance using shared memory.  
 
+## Day 10
+### File: `PartialSum.cu`
+**Summary:**  
+Worked on parallel reduction to compute the partial sum of an array. Implemented a tree-based reduction algorithm, minimizing warp divergence for better performance.  
 
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
