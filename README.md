@@ -27,10 +27,15 @@ Implemented vector addition by writing a simple CUDA program. Explored how to la
 **Summary:**  
 Worked on vect addition using triton.
 
-## Day 7
+## Day 8
 ### File: `MatrixAdd.cu`,`Matrixadd.py`
 **Summary:**  
 Implemented Matrix addition in both triton and CUDA.
+
+## Day 9
+### File: `Matrix_vec_mult.cu`
+**Summary:**  
+Implemented matrix-vector multiplication using CUDA. Each thread was set up to compute the dot product between a matrix row and the given vector. Optimized performance using shared memory.  
 
 
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
