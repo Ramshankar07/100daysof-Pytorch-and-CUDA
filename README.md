@@ -42,4 +42,10 @@ Implemented matrix-vector multiplication using CUDA. Each thread was set up to c
 **Summary:**  
 Worked on parallel reduction to compute the partial sum of an array. Implemented a tree-based reduction algorithm, minimizing warp divergence for better performance.  
 
+## Day 11
+### File: `LayerNorm.cu`
+**Summary:**  
+Implemented Layer Normalization in CUDA, often used in deep learning models. Explored normalization techniques across batches and layers using reduction operations. Addressed the challenge of maintaining numerical stability during computation.  
+
+
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
