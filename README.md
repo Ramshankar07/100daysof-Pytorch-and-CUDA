@@ -47,5 +47,9 @@ Worked on parallel reduction to compute the partial sum of an array. Implemented
 **Summary:**  
 Implemented Layer Normalization in CUDA, often used in deep learning models. Explored normalization techniques across batches and layers using reduction operations. Addressed the challenge of maintaining numerical stability during computation.  
 
+## Day 12
+### File: `MatrixTranspose.cu`
+**Summary:**  
+Implemented CUDA-based matrix transposition. Optimized the implementation by leveraging shared memory to minimize global memory reads and writes. Ensured proper handling of edge cases when the matrix dimensions are not multiples of the block size.  
 
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
