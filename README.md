@@ -59,4 +59,9 @@ Implemented CUDA-based matrix transposition. Optimized the implementation by lev
 Implemented a simple 1D convolution algorithm using CUDA. This involved sliding a kernel (or filter) over an input array and computing the weighted sum of elements. Each thread was assigned to compute the convolution at a specific position in the output array.  
 
 
+## Day 14
+### File: `2d_convolution_with_tiling.cu`  
+**Summary:**  
+Implemented a 2D convolution algorithm with tiling optimization using CUDA. Divided the input matrix into tiles and leveraged shared memory to minimize global memory accesses, ensuring efficient computation of the convolution kernel across the matrix. Handled boundary conditions using halo cells to process edges and corners correctly.  
+
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
