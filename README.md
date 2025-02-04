@@ -52,4 +52,11 @@ Implemented Layer Normalization in CUDA, often used in deep learning models. Exp
 **Summary:**  
 Implemented CUDA-based matrix transposition. Optimized the implementation by leveraging shared memory to minimize global memory reads and writes. Ensured proper handling of edge cases when the matrix dimensions are not multiples of the block size.  
 
+## Day 13
+
+### File: `one_d_convolution.cu`
+**Summary:**  
+Implemented a simple 1D convolution algorithm using CUDA. This involved sliding a kernel (or filter) over an input array and computing the weighted sum of elements. Each thread was assigned to compute the convolution at a specific position in the output array.  
+
+
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
