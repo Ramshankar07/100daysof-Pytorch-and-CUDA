@@ -64,4 +64,9 @@ Implemented a simple 1D convolution algorithm using CUDA. This involved sliding 
 **Summary:**  
 Implemented a 2D convolution algorithm with tiling optimization using CUDA. Divided the input matrix into tiles and leveraged shared memory to minimize global memory accesses, ensuring efficient computation of the convolution kernel across the matrix. Handled boundary conditions using halo cells to process edges and corners correctly.  
 
+## Day 15
+### File: `2d_conv_tiling.py`
+Same thing in triton
+
+
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
