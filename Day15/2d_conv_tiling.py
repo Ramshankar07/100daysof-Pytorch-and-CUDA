@@ -2,51 +2,59 @@ import triton
 import torch
 import triton.language as tl
 
-
 @triton.jit
-def twod_conv_tiling(Matrix_A,Matrix_B,sizeX,sizeY,BLOCK_SIZE:tl.constexpr):
-
-    pid_x = tl.program_id(0) # we have the rows
-    pid_y = tl.program_id(1) # we have the columns
+def twod_conv_tiling(Matrix_A, Matrix_B, Matrix_C, sizeX, sizeY, BLOCK_SIZE: tl.constexpr):
+    # Get program ID for the current tile
+    pid_x = tl.program_id(0)
+    pid_y = tl.program_id(1)
     
-    row_start = pid_x*BLOCK_SIZE # calculate the start of the row
-    col_start = pid_y*BLOCK_SIZE # calculate the start of the column
+    # Calculate starting positions for this tile
+    row_start = pid_x * BLOCK_SIZE
+    col_start = pid_y * BLOCK_SIZE
     
-    row_indices = row_start + tl.arange(0,BLOCK_SIZE) 
-    col_indices= col_start+ tl.arrange(0,BLOCK_SIZE)
+    # Generate row and column indices for this tile
+    row_indices = row_start + tl.arange(0, BLOCK_SIZE)
+    col_indices = col_start + tl.arange(0, BLOCK_SIZE)
+    
+    # Create masks for boundary checking
+    row_mask = row_indices < sizeY
+    col_mask = col_indices < sizeX
+    
+    # Load input blocks
+    a = tl.load(Matrix_A + row_indices[:, None] * sizeX + col_indices[None, :],
+                mask=row_mask[:, None] & col_mask[None, :])
+    b = tl.load(Matrix_B + row_indices[:, None] * sizeX + col_indices[None, :],
+                mask=row_mask[:, None] & col_mask[None, :])
+    
+    # Perform convolution
+    c = tl.zeros([BLOCK_SIZE, BLOCK_SIZE], dtype=tl.float32)
     for i in range(BLOCK_SIZE):
         for j in range(BLOCK_SIZE):
-            
-    # get the indices of the rows which is less than BLOCK_SIZE(boundary) to process
+            c[i, j] = a[i, j] * b[i, j]
     
-    
-    # tl.store(Matrix_C+flat_indicies,C,mask=valid_mask)
+    # Store results
+    tl.store(Matrix_C + row_indices[:, None] * sizeX + col_indices[None, :],
+             c, mask=row_mask[:, None] & col_mask[None, :])
 
-
-def test_addMatrix():
+def test_Matrix():
     sizeX = 8
     sizeY = 8
-    Mask=2
-
     BLOCK_SIZE = 2
 
+    # Initialize input matrices
     Matrix_A = torch.randn(sizeY, sizeX, device='cuda', dtype=torch.float32)
     Matrix_B = torch.randn(sizeY, sizeX, device='cuda', dtype=torch.float32)
+    Matrix_C = torch.empty_like(Matrix_A)
 
-    grid = (triton.cdiv(sizeX, BLOCK_SIZE), triton.cdiv(sizeY, BLOCK_SIZE))
-    twod_conv_tiling[grid](Matrix_A, Matrix_B, sizeX, sizeY, BLOCK_SIZE)
-
-    Matrix_C = Matrix_C_flat.reshape(sizeY, sizeX)
-
-    expected = Matrix_A + Matrix_B
-    print("Matrix A:\n", Matrix_A)
-    print("Matrix B:\n", Matrix_B)
-    print("Matrix C (Triton):\n", Matrix_C)
-    print("Expected (PyTorch):\n", expected)
-    assert torch.allclose(Matrix_C, expected), "Triton result does not match PyTorch result!"
-
-test_addMatrix()
-
+    # Calculate grid dimensions
+    grid = (triton.cdiv(sizeY, BLOCK_SIZE), triton.cdiv(sizeX, BLOCK_SIZE))
     
+    # Launch kernel
+    twod_conv_tiling[grid](
+        Matrix_A, Matrix_B, Matrix_C,
+        sizeX, sizeY, BLOCK_SIZE
+    )
     
+    return Matrix_C
+
     
