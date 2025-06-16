@@ -69,8 +69,10 @@ Implemented a 2D convolution algorithm with tiling optimization using CUDA. Divi
 Same thing in triton
 
 ## Day 16
-### File: `sparse-matrix.py`
+### File: `sparse-matrix.cu`
 This CUDA kernel implements a hybrid ELL-COO sparse matrix format for efficient sparse matrix-vector multiplication (SpMV) on GPUs
 
-
+## Day 17
+### File: `Cuda_CNN.ipynb`
+This CUDA kernel implements a whole CNN architecture with pooling layers 
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
