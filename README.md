@@ -75,4 +75,20 @@ This CUDA kernel implements a hybrid ELL-COO sparse matrix format for efficient 
 ## Day 17
 ### File: `Cuda_CNN.ipynb`
 This CUDA kernel implements a whole CNN architecture with pooling layers 
+
+## Day 18
+### File: `1dconv.py`
+**Summary:**  
+Implemented 1D convolution using Triton, a high-level language for GPU programming. The implementation uses block-based processing where each thread block handles a segment of the input array. Features include proper boundary handling with padding, efficient memory access patterns, and support for variable kernel sizes. The convolution operation computes weighted sums by sliding the kernel over the input data.
+
+## Day 19
+### File: `tiled-matrix.cu`
+**Summary:**  
+Implemented tiled matrix multiplication in CUDA with advanced optimization techniques. Each thread computes a 2x2 block of the output matrix, utilizing shared memory tiles to minimize global memory accesses. The implementation includes loop unrolling for better instruction-level parallelism and proper boundary condition handling. This approach significantly improves memory bandwidth utilization and reduces memory latency.
+
+## Day 20
+### File: `doublebuffermatmul.cu`
+**Summary:**  
+Implemented double-buffered matrix multiplication using CUDA, a technique that overlaps computation with memory transfers. The kernel uses two sets of shared memory buffers (ping-pong buffering) where one buffer is used for computation while the other is being loaded with new data from global memory. This approach ensures the GPU is never idle and minimizes memory latency, making it particularly effective for large-scale matrix multiplications where global memory access is a bottleneck.
+
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
