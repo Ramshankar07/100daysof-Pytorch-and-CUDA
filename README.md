@@ -91,4 +91,9 @@ Implemented tiled matrix multiplication in CUDA with advanced optimization techn
 **Summary:**  
 Implemented double-buffered matrix multiplication using CUDA, a technique that overlaps computation with memory transfers. The kernel uses two sets of shared memory buffers (ping-pong buffering) where one buffer is used for computation while the other is being loaded with new data from global memory. This approach ensures the GPU is never idle and minimizes memory latency, making it particularly effective for large-scale matrix multiplications where global memory access is a bottleneck.
 
+##Day 21
+### file: `relu.cu`
+**Summary:**
+Implemented Tiling based relu activation for a 2D matrix
+
 Enjoy the journey into the depths of neural networks and high-performance computing with PyTorch and CUDA!
